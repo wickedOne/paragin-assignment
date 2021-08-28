@@ -1,0 +1,24 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>ceasura</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for respondent in remindo.respondents %}
+            <tr>
+                <td>{{ respondent.id }}</td>
+                <td>{{ respondent.name }}</td>
+                <td>{{ respondent.ceasura }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

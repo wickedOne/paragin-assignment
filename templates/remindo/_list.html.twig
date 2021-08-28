@@ -1,0 +1,31 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>created</th>
+        <th>name</th>
+        <th>questions</th>
+        <th>respondents</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for remindo in tests %}
+        <tr>
+            <td>{{ remindo.id }}</td>
+            <td>{{ remindo.created|date }}</td>
+            <td>{{ remindo.name }}</td>
+            <td>{{ remindo.questions|length }}</td>
+            <td>{{ remindo.respondents|length }}</td>
+            <td>
+                <a href="{{ path('app_remindo_detail', {'id': remindo.id}) }}" target="_top">show</a>
+                <a data-turbo-form-redirect="true" href="{{ path('app_remindo_delete', {'id': remindo.id}) }}">delete</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="9">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

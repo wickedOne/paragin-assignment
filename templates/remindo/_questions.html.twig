@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>sequence</th>
+            <th>p-value</th>
+            <th>r-value</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for question in remindo.questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>{{ question.sequence }}</td>
+                <td>{{ question.pValue }}</td>
+                <td>{{ question.rValue }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

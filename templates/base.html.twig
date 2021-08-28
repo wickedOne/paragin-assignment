@@ -1,19 +1,43 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    {% block metas %}{% endblock %}
+    <title>{% block title %}paragin assignment{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<div class="page-top">
+    <header class="header px-2">
+        <nav class="navbar navbar-expand-lg navbar-dark justify-content-between">
+            <a class="navbar-brand" href="/">
+                <img src="{{ asset('images/paragin-logo-120.png' ) }}"
+                    alt="paragin"
+                    id="logo-img"
+                     width="250px"
+                >
+            </a>
+        </nav>
+    </header>
+    <div id="flash-container" data-turbo-cache="false">
+        {% for flash in app.session.flashBag.get('success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ flash }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% block body %}{% endblock %}
+
+</body>
 </html>

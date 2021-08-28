@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}remindo test {{ remindo.id }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <turbo-frame id="remindo-list">
+            <a href="{{ path('app_remindo_index') }}" target="_top"><i class="fas fa-caret-left"></i> Back to list</a>
+            <div class="card">
+                <h5 class="card-header">details: {{ remindo.name }}</h5>
+                <div class="card-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="respondents-tab" data-bs-toggle="tab"
+                                    data-bs-target="#respondents" type="button" role="tab" aria-controls="respondents"
+                                    aria-selected="true">respondents
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="questions-tab" data-bs-toggle="tab" data-bs-target="#questions"
+                                    type="button" role="tab" aria-controls="questions" aria-selected="false">questions
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="respondents" role="tabpanel"
+                             aria-labelledby="respondents-tab">
+                            {% include 'remindo/_respondents.html.twig' %}
+                        </div>
+                        <div class="tab-pane fade" id="questions" role="tabpanel" aria-labelledby="questions-tab">
+                            {% include 'remindo/_questions.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </turbo-frame>
+    </div>
+{% endblock %}

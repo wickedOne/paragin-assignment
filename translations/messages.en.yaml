@@ -1,0 +1,11 @@
+form:
+  label:
+    upload:
+      choose_file: choose file
+
+remindo:
+  new:
+    success: succesfully uploaded %file_name%
+    error: could not upload %file_name% (%message%)
+  delete:
+    success: succesfully deleted remindo test

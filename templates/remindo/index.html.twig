@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}remindo tests{% endblock %}
+
+{% block body %}
+    <div
+            class="container-fluid container-xl mt-4"
+    >
+        <div class="d-flex flex-row">
+            <h1 class="me-3 mb-4">remindo tests</h1>
+
+            <div
+                {{ stimulus_controller('modal-form') }}
+            >
+                <button
+                    class="btn btn-primary btn-sm"
+                    data-action="modal-form#openModal"
+                >+ add new test</button>
+
+                {{ include('_modal.html.twig', {
+                    modalTitle: 'add a new remindo test',
+                    modalSrc: path('app_remindo_new'),
+                    id: 'remindo-test',
+                }) }}
+            </div>
+        </div>
+
+        <turbo-frame class="table-responsive" id="remindo-list">
+            {{ include('remindo/_list.html.twig') }}
+        </turbo-frame>
+    </div>
+{% endblock %}
