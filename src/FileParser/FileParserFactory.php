@@ -9,7 +9,9 @@ declare(strict_types=1);
 
 namespace App\FileParser;
 
-use App\Exception\FileParseException;
+use App\Contract\FileParser\FileParserFactoryInterface;
+use App\Contract\FileParser\FileParserInterface;
+use App\Exception\FileParser\FileParseException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -17,19 +19,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @author wicliff <wwolda@gmail.com>
  */
-final class FileParserFactory
+final class FileParserFactory implements FileParserFactoryInterface
 {
     private const EXTENSION_XLSX = 'xlsx';
     private const EXTENSION_CSV = 'csv';
 
     /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     *
-     * @return \App\FileParser\AbstractFileParser
-     *
-     * @throws \App\Exception\FileParseException
+     * {@inheritdoc}
      */
-    public function create(UploadedFile $file): AbstractFileParser
+    public function create(UploadedFile $file): FileParserInterface
     {
         switch ($file->guessClientExtension()) {
             case self::EXTENSION_XLSX:

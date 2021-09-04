@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author wicliff <wwolda@gmail.com>
  */
-final class UploadData
+class UploadData
 {
     /**
      * @var string

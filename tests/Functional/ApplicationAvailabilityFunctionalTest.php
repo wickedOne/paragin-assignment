@@ -21,6 +21,8 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     /**
      * @dataProvider urlProvider
      *
+     * @group functional
+     *
      * @param mixed $url
      *
      * @throws \PHPUnit\Framework\ExpectationFailedException

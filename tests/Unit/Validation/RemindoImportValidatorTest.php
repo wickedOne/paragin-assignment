@@ -22,6 +22,8 @@ class RemindoImportValidatorTest extends TestCase
     /**
      * @dataProvider importValidatorDataProvider
      *
+     * @group unit
+     *
      * @param array $data
      * @param bool  $result
      *

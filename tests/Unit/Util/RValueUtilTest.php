@@ -22,6 +22,8 @@ class RValueUtilTest extends TestCase
     /**
      * @dataProvider calculateDataProvider
      *
+     * @group unit
+     *
      * @param mixed $x
      * @param mixed $y
      * @param mixed $result

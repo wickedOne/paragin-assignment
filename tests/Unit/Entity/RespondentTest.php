@@ -23,6 +23,8 @@ class RespondentTest extends TestCase
     /**
      * @dataProvider respondentDataProvider
      *
+     * @group unit
+     *
      * @param mixed $name
      * @param mixed $remindo
      *

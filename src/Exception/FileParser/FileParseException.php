@@ -7,7 +7,7 @@ declare(strict_types=1);
  * (c) wicliff <wwolda@gmail.com>
  */
 
-namespace App\Exception;
+namespace App\Exception\FileParser;
 
 use Throwable;
 

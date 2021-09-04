@@ -22,6 +22,8 @@ class CeasuraUtilTest extends TestCase
     /**
      * @dataProvider ceasuraDataProvider
      *
+     * @group unit
+     *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      *
      * @param mixed $score

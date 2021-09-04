@@ -9,15 +9,14 @@ declare(strict_types=1);
 
 namespace App\Processor;
 
-use App\Doctrine\Decorator\TransactionalEntityManagerDecorator;
+use App\Contract\FileParser\FileParserFactoryInterface;
 use App\Doctrine\Exception\DoctrineTransactionException;
 use App\Entity\Question;
 use App\Entity\Remindo;
 use App\Entity\Respondent;
 use App\Entity\Result;
-use App\Exception\FileParseException;
+use App\Exception\FileParser\FileParseException;
 use App\Exception\ProcessorException;
-use App\FileParser\FileParserFactory;
 use App\Form\Data\UploadData;
 use App\Validation\RemindoImportValidator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,7 +42,7 @@ final class RemindoImportProcessor
     /**
      * @var \App\FileParser\FileParserFactory
      */
-    private FileParserFactory $parserFactory;
+    private FileParserFactoryInterface $parserFactory;
 
     /**
      * @var \Psr\Log\LoggerInterface
@@ -66,7 +65,7 @@ final class RemindoImportProcessor
      * @param \App\Validation\RemindoImportValidator                      $validator
      * @param \App\Doctrine\Decorator\TransactionalEntityManagerDecorator $em
      */
-    public function __construct(FileParserFactory $parserFactory, LoggerInterface $logger, RemindoImportValidator $validator, TransactionalEntityManagerDecorator $em)
+    public function __construct(FileParserFactoryInterface $parserFactory, LoggerInterface $logger, RemindoImportValidator $validator, EntityManagerInterface $em)
     {
         $this->parserFactory = $parserFactory;
         $this->logger = $logger;

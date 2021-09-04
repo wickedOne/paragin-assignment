@@ -23,6 +23,8 @@ class QuestionTest extends TestCase
     /**
      * @dataProvider questionDataProvider
      *
+     * @group unit
+     *
      * @param mixed $sequence
      * @param mixed $max
      * @param mixed $remindo
@@ -36,6 +38,10 @@ class QuestionTest extends TestCase
         self::assertSame($sequence, $question->getSequence());
         self::assertSame($max, $question->getMax());
         self::assertSame($remindo, $question->getRemindo());
+
+        self::assertEmpty($question->getResults());
+        self::assertSame(0.0, $question->getPValue());
+        self::assertSame(0.0, $question->getRValue());
     }
 
     /**

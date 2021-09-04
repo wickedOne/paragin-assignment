@@ -20,7 +20,7 @@ use Ramsey\Uuid\UuidInterface;
  *
  * @extends \Doctrine\ORM\EntityRepository<Remindo>
  */
-final class RemindoRepository extends EntityRepository
+class RemindoRepository extends EntityRepository
 {
     /**
      * @param UuidInterface $id

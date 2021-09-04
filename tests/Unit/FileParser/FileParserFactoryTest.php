@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\FileParser;
 
-use App\Exception\FileParseException;
+use App\Exception\FileParser\FileParseException;
 use App\FileParser\CsvFileParser;
 use App\FileParser\FileParserFactory;
 use App\FileParser\XlsxFileParser;
@@ -26,6 +26,8 @@ class FileParserFactoryTest extends TestCase
     /**
      * @dataProvider fileParserDataProvider
      *
+     * @group unit
+     *
      * @param mixed $mime
      * @param mixed $result
      *
@@ -40,7 +42,9 @@ class FileParserFactoryTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParseException
+     * @throws \App\Exception\FileParser\FileParseException
+     *
+     * @group unit
      */
     public function testUnknownMimeType(): void
     {
