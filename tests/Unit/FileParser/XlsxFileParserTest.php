@@ -26,8 +26,6 @@ class XlsxFileParserTest extends TestCase
     /**
      * @dataProvider dataProvider
      *
-     * @group unit
-     *
      * @param bool   $validatorResult
      * @param string $data
      * @param array  $result
@@ -47,8 +45,6 @@ class XlsxFileParserTest extends TestCase
 
     /**
      * @throws \App\Exception\FileParser\FileParseException
-     *
-     * @group unit
      */
     public function testInvalidFileException(): void
     {
@@ -64,8 +60,6 @@ class XlsxFileParserTest extends TestCase
 
     /**
      * @throws \App\Exception\FileParser\FileParseException
-     *
-     * @group unit
      */
     public function testSimpleXlsxException(): void
     {

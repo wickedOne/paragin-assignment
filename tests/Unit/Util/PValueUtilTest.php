@@ -22,8 +22,6 @@ class PValueUtilTest extends TestCase
     /**
      * @dataProvider calculateProvider
      *
-     * @group unit
-     *
      * @param float $average
      * @param int   $maximum
      * @param float $result

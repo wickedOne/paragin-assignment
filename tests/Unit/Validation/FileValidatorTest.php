@@ -23,8 +23,6 @@ class FileValidatorTest extends TestCase
     /**
      * @dataProvider fileProvider
      *
-     * @group unit
-     *
      * @param string   $path
      * @param int|null $error
      * @param bool     $result

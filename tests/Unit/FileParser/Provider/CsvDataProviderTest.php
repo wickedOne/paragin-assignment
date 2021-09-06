@@ -21,8 +21,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class CsvDataProviderTest extends TestCase
 {
     /**
-     * @group unit
-     *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     public function testProvideString(): void

@@ -23,8 +23,6 @@ class QuestionTest extends TestCase
     /**
      * @dataProvider questionDataProvider
      *
-     * @group unit
-     *
      * @param mixed $sequence
      * @param mixed $max
      * @param mixed $remindo

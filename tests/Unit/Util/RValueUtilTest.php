@@ -22,8 +22,6 @@ class RValueUtilTest extends TestCase
     /**
      * @dataProvider calculateDataProvider
      *
-     * @group unit
-     *
      * @param mixed $x
      * @param mixed $y
      * @param mixed $result
@@ -44,6 +42,12 @@ class RValueUtilTest extends TestCase
             'x' => [3, 2, 4, 5, 6],
             'y' => [9, 7, 12, 15, 17],
             'result' => 0.997,
+        ];
+
+        yield 'divide_by_zero' => [
+            'x' => [],
+            'y' => [],
+            'result' => 0.0,
         ];
     }
 }

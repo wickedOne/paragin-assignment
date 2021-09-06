@@ -26,8 +26,6 @@ class FileParserFactoryTest extends TestCase
     /**
      * @dataProvider fileParserDataProvider
      *
-     * @group unit
-     *
      * @param mixed $mime
      * @param mixed $result
      *
@@ -43,8 +41,6 @@ class FileParserFactoryTest extends TestCase
 
     /**
      * @throws \App\Exception\FileParser\FileParseException
-     *
-     * @group unit
      */
     public function testUnknownMimeType(): void
     {

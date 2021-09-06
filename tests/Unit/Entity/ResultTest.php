@@ -25,8 +25,6 @@ class ResultTest extends TestCase
     /**
      * @dataProvider resultDataProvider
      *
-     * @group unit
-     *
      * @param mixed $score
      * @param mixed $respondent
      * @param mixed $remindo

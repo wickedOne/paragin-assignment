@@ -36,8 +36,6 @@ class RemindoImportProcessorTest extends TestCase
     ];
 
     /**
-     * @group unit
-     *
      * @throws \App\Exception\ProcessorException
      */
     public function testInvalidUpload(): void
@@ -55,8 +53,6 @@ class RemindoImportProcessorTest extends TestCase
     }
 
     /**
-     * @group unit
-     *
      * @throws \App\Exception\ProcessorException
      */
     public function testUnknownMimeType(): void
@@ -74,8 +70,6 @@ class RemindoImportProcessorTest extends TestCase
     }
 
     /**
-     * @group unit
-     *
      * @throws \App\Exception\ProcessorException
      */
     public function testInvalidData(): void
@@ -93,7 +87,7 @@ class RemindoImportProcessorTest extends TestCase
     }
 
     /**
-     * @group unit
+     * test process.
      */
     public function testProcess(): void
     {

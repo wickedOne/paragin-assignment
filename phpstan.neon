@@ -7,6 +7,9 @@ includes:
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/phpstan/phpstan-phpunit/rules.neon
 
+rules:
+    - App\PHPStan\Factory\FileParserInstantiationRule
+
 parameters:
     symfony:
         container_xml_path: var/cache/test/App_KernelTestDebugContainer.xml

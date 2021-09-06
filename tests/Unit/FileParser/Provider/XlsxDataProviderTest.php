@@ -21,8 +21,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class XlsxDataProviderTest extends TestCase
 {
     /**
-     * @group unit
-     *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     public function testProvide(): void
@@ -33,8 +31,6 @@ class XlsxDataProviderTest extends TestCase
     }
 
     /**
-     * @group unit
-     *
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     public function testProvideNull(): void

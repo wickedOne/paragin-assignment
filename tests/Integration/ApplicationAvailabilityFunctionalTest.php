@@ -7,7 +7,7 @@ declare(strict_types=1);
  * (c) wicliff <wwolda@gmail.com>
  */
 
-namespace App\Tests\Functional;
+namespace App\Tests\Integration;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -20,8 +20,6 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
 {
     /**
      * @dataProvider urlProvider
-     *
-     * @group functional
      *
      * @param mixed $url
      *

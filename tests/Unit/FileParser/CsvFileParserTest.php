@@ -29,8 +29,6 @@ class CsvFileParserTest extends TestCase
     /**
      * @dataProvider dataProvider
      *
-     * @group unit
-     *
      * @param bool   $validatorResult
      * @param string $data
      * @param array  $result
@@ -50,8 +48,6 @@ class CsvFileParserTest extends TestCase
 
     /**
      * @throws \App\Exception\FileParser\FileParseException
-     *
-     * @group unit
      */
     public function testInvalidFileException(): void
     {
@@ -67,8 +63,6 @@ class CsvFileParserTest extends TestCase
 
     /**
      * @throws \App\Exception\FileParser\FileParseException
-     *
-     * @group unit
      */
     public function testDecodeException(): void
     {
