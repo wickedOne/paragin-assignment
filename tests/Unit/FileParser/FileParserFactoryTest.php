@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\FileParser;
 
-use App\Exception\FileParser\FileParserException;
 use App\FileParser\CsvFileParser;
+use App\FileParser\Exception\FileParserException;
 use App\FileParser\FileParserFactory;
 use App\FileParser\XlsxFileParser;
 use PHPUnit\Framework\TestCase;
@@ -40,7 +40,7 @@ class FileParserFactoryTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParserException
+     * @throws \App\FileParser\Exception\FileParserException
      */
     public function testUnknownMimeType(): void
     {

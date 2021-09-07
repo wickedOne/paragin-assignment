@@ -10,11 +10,12 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Import;
 
 use App\Entity\Remindo;
-use App\Exception\ProcessorException;
 use App\FileParser\FileParserFactory;
 use App\Form\Data\UploadData;
+use App\Import\Exception\ProcessorException;
 use App\Import\RemindoDataProcessor;
 use App\Import\RemindoImporter;
+use App\Tests\Mock\Import\FailingProcessor;
 use App\Tests\Mock\Import\SupportingProcessor;
 use App\Tests\Mock\Import\UnsupportingProcessor;
 use App\Tests\Mock\TestFileParserFactory;
@@ -37,7 +38,7 @@ class RemindoImporterTest extends TestCase
     ];
 
     /**
-     * @throws \App\Exception\ProcessorException
+     * @throws \App\Import\Exception\ProcessorException
      */
     public function testInvalidUpload(): void
     {
@@ -55,7 +56,7 @@ class RemindoImporterTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\ProcessorException
+     * @throws \App\Import\Exception\ProcessorException
      */
     public function testUnknownMimeType(): void
     {
@@ -73,14 +74,14 @@ class RemindoImporterTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\ProcessorException
+     * @throws \App\Import\Exception\ProcessorException
      */
     public function testInvalidData(): void
     {
         $this->expectException(ProcessorException::class);
 
         $data = $this->getFormData(true, 1);
-        $logger = $this->getLogger(0);
+        $logger = $this->getLogger(1, 'data does not validate');
 
         $factory = new TestFileParserFactory(true, '', ['foo', 'bar']);
         $validator = new RemindoImportValidator();
@@ -145,6 +146,26 @@ class RemindoImporterTest extends TestCase
         $test = $importer->import($data);
 
         self::assertSame('bar', $test->getName());
+    }
+
+    /**
+     * @throws \App\Import\Exception\ProcessorException
+     */
+    public function testTransactionException(): void
+    {
+        $this->expectException(ProcessorException::class);
+
+        $data = $this->getFormData(true, 1);
+        $logger = $this->getLogger(1, 'unable to persist data for {remindo}', ['remindo', 'exception']);
+
+        $factory = new TestFileParserFactory(true, '', self::$data);
+        $validator = new RemindoImportValidator();
+        $processor = new RemindoDataProcessor([
+            new FailingProcessor(),
+        ]);
+
+        $importer = new RemindoImporter($factory, $logger, $validator, $processor);
+        $importer->import($data);
     }
 
     /**

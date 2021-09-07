@@ -40,6 +40,10 @@ class QuestionProcessor implements ProcessorInterface
      */
     public function process(array $data, Remindo $remindo): Remindo
     {
+        if (!isset($data[self::ROW_START][self::COL_START])) {
+            return $remindo;
+        }
+
         foreach (\array_slice($data[self::ROW_START], self::COL_START, null, true) as $sequence => $max) {
             $question = Question::fromImportData($sequence, (int) $max, $remindo);
 

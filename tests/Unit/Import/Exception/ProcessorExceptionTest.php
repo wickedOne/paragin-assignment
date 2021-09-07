@@ -7,17 +7,17 @@ declare(strict_types=1);
  * (c) wicliff <wwolda@gmail.com>
  */
 
-namespace App\Tests\Unit\Exception\FileParser;
+namespace App\Tests\Unit\Import\Exception;
 
-use App\Exception\FileParser\FileParserException;
+use App\Import\Exception\ProcessorException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * File Parser Exception Test.
+ * Processor Exception Test.
  *
  * @author wicliff <wwolda@gmail.com>
  */
-class FileParserExceptionTest extends TestCase
+class ProcessorExceptionTest extends TestCase
 {
     /**
      * @throws \PHPUnit\Framework\Exception
@@ -25,11 +25,11 @@ class FileParserExceptionTest extends TestCase
      */
     public function testException(): void
     {
-        $exception = new FileParserException('foo', new FileParserException('bar'));
+        $exception = new ProcessorException('foo', new ProcessorException('bar'));
 
         self::assertSame('foo', $exception->getMessage());
         self::assertSame(0, $exception->getCode());
-        self::assertInstanceOf(FileParserException::class, $exception->getPrevious());
+        self::assertInstanceOf(ProcessorException::class, $exception->getPrevious());
         self::assertSame('bar', $exception->getPrevious()->getMessage());
     }
 }

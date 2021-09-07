@@ -7,16 +7,16 @@ declare(strict_types=1);
  * (c) wicliff <wwolda@gmail.com>
  */
 
-namespace App\Exception\FileParser;
+namespace App\Import\Exception;
 
 use Throwable;
 
 /**
- * File Parser Exception.
+ * Processor Exception.
  *
  * @author wicliff <wwolda@gmail.com>
  */
-class FileParserException extends \RuntimeException
+class ProcessorException extends \RuntimeException
 {
     /**
      * @param string          $message

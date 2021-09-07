@@ -11,7 +11,7 @@ namespace App\FileParser;
 
 use App\Contract\FileParser\FileParserInterface;
 use App\Contract\FileParser\Provider\DataProviderInterface;
-use App\Exception\FileParser\FileParserException;
+use App\FileParser\Exception\FileParserException;
 use App\FileParser\Provider\XlsxDataProvider;
 use App\Validation\FileValidator;
 use SimpleXLSX;
@@ -50,7 +50,7 @@ final class XlsxFileParser implements FileParserInterface
      * @param \App\Contract\FileParser\Provider\DataProviderInterface|null $provider
      * @param \SimpleXLSX|null                                             $simpleXLSX
      *
-     * @throws \App\Exception\FileParser\FileParserException
+     * @throws \App\FileParser\Exception\FileParserException
      */
     public function __construct(UploadedFile $file, FileValidator $validator = null, DataProviderInterface $provider = null, SimpleXLSX $simpleXLSX = null)
     {

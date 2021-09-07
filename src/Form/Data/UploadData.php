@@ -71,6 +71,6 @@ class UploadData
      */
     public function isValidUpload(): bool
     {
-        return $this->getFile() instanceof UploadedFile && $this->getFile()->isValid() && is_readable($this->getFile()->getPathname());
+        return $this->getFile()->isValid() && is_readable($this->getFile()->getPathname());
     }
 }

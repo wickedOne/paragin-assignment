@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace App\Doctrine\Exception;
 
+use Throwable;
+
 /**
  * Doctrine Transaction Exception.
  *
@@ -16,4 +18,13 @@ namespace App\Doctrine\Exception;
  */
 class DoctrineTransactionException extends \RuntimeException
 {
+    /**
+     * @param string          $message
+     * @param int             $code
+     * @param \Throwable|null $previous
+     */
+    public function __construct($message = '', int $code = 0, Throwable $previous = null)
+    {
+        parent::__construct($message, $code, $previous);
+    }
 }

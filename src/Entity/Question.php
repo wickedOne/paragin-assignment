@@ -75,6 +75,10 @@ class Question
     }
 
     /**
+     * @infection-ignore-all
+     *
+     * @codeCoverageIgnore
+     *
      * @return UuidInterface
      */
     public function getId(): UuidInterface
@@ -83,6 +87,10 @@ class Question
     }
 
     /**
+     * @infection-ignore-all
+     *
+     * @codeCoverageIgnore
+     *
      * @return \DateTime
      */
     public function getCreated(): \DateTime

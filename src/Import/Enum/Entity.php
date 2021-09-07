@@ -13,6 +13,8 @@ namespace App\Import\Enum;
  * Entity enum.
  *
  * @author wicliff <wwolda@gmail.com>
+ *
+ * @codeCoverageIgnore
  */
 final class Entity
 {

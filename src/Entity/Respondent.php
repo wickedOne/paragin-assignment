@@ -69,6 +69,10 @@ class Respondent
     }
 
     /**
+     * @infection-ignore-all
+     *
+     * @codeCoverageIgnore
+     *
      * @return UuidInterface
      */
     public function getId(): UuidInterface
@@ -77,6 +81,10 @@ class Respondent
     }
 
     /**
+     * @infection-ignore-all
+     *
+     * @codeCoverageIgnore
+     *
      * @return \DateTime
      */
     public function getCreated(): \DateTime
@@ -117,30 +125,6 @@ class Respondent
     }
 
     /**
-     * @return float
-     */
-    public function getSumScore(): float
-    {
-        return (float) array_reduce($this->results->toArray(), static function ($carry, Result $result) {
-            $carry += $result->getScore();
-
-            return $carry;
-        });
-    }
-
-    /**
-     * @return int
-     */
-    public function getSumMax(): int
-    {
-        return (int) array_reduce($this->results->toArray(), static function ($carry, Result $result) {
-            $carry += $result->getQuestion()->getMax();
-
-            return $carry;
-        });
-    }
-
-    /**
      * @param string              $name
      * @param \App\Entity\Remindo $remindo
      *
@@ -154,5 +138,25 @@ class Respondent
         $respondent->remindo = $remindo;
 
         return $respondent;
+    }
+
+    /**
+     * @return float
+     */
+    private function getSumScore(): float
+    {
+        return (float) array_reduce($this->results->toArray(), static function ($carry, Result $result) {
+            return $carry + $result->getScore();
+        });
+    }
+
+    /**
+     * @return int
+     */
+    private function getSumMax(): int
+    {
+        return (int) array_reduce($this->results->toArray(), static function ($carry, Result $result) {
+            return $carry + $result->getQuestion()->getMax();
+        });
     }
 }

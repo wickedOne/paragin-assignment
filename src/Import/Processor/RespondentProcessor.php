@@ -40,10 +40,16 @@ class RespondentProcessor implements ProcessorInterface
      */
     public function process(array $data, Remindo $remindo): Remindo
     {
-        $count = \count($data);
+        if (!isset($data[self::ROW_START])) {
+            return $remindo;
+        }
 
-        for ($respondentRow = self::ROW_START; $respondentRow < $count; ++$respondentRow) {
-            $respondent = Respondent::fromImportData($data[$respondentRow][self::COL_START], $remindo);
+        foreach (\array_slice($data, self::ROW_START) as $respondentRow) {
+            if (!isset($respondentRow[self::COL_START])) {
+                continue;
+            }
+
+            $respondent = Respondent::fromImportData($respondentRow[self::COL_START], $remindo);
 
             $this->persistence->persist($respondent);
         }

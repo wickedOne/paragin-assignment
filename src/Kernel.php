@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 
 /**
  * Kernel.
+ *
+ * @codeCoverageIgnore
  */
 class Kernel extends BaseKernel
 {

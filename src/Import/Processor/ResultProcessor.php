@@ -27,14 +27,24 @@ class ResultProcessor implements ProcessorInterface
 
     private const BATCH_SIZE = 50;
 
+    /**
+     * @var \App\Import\Persistence\RemindoPersistence
+     */
     private RemindoPersistence $persistence;
 
     /**
-     * @param \App\Import\Persistence\RemindoPersistence $persistence
+     * @var int
      */
-    public function __construct(RemindoPersistence $persistence)
+    private int $batchSize;
+
+    /**
+     * @param \App\Import\Persistence\RemindoPersistence $persistence
+     * @param int                                        $batchSize
+     */
+    public function __construct(RemindoPersistence $persistence, int $batchSize = self::BATCH_SIZE)
     {
         $this->persistence = $persistence;
+        $this->batchSize = $batchSize;
     }
 
     /**
@@ -59,7 +69,7 @@ class ResultProcessor implements ProcessorInterface
                 $this->persistence->persist($result);
             }
 
-            if ((++$i % self::BATCH_SIZE) === 0) {
+            if ((++$i % $this->batchSize) === 0) {
                 $remindo = $this->persistence->flush($remindo);
             }
         }
@@ -82,8 +92,8 @@ class ResultProcessor implements ProcessorInterface
      */
     private function respondentGenerator(array $data): \Generator
     {
-        foreach (\array_slice($data, self::ROW_START) as $respondent) {
-            yield array_shift($respondent) => $respondent;
+        foreach (\array_slice($data, self::ROW_START, null, true) as $respondent) {
+            yield $respondent[0] => \array_slice($respondent, self::COL_START, null, true);
         }
     }
 
@@ -94,7 +104,7 @@ class ResultProcessor implements ProcessorInterface
      */
     private function resultGenerator(array $results): \Generator
     {
-        foreach (\array_slice($results, self::COL_START, null, true) as $sequence => $score) {
+        foreach ($results as $sequence => $score) {
             yield $sequence => $score;
         }
     }

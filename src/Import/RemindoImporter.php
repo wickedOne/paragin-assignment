@@ -12,9 +12,9 @@ namespace App\Import;
 use App\Contract\FileParser\FileParserFactoryInterface;
 use App\Doctrine\Exception\DoctrineTransactionException;
 use App\Entity\Remindo;
-use App\Exception\FileParser\FileParserException;
-use App\Exception\ProcessorException;
+use App\FileParser\Exception\FileParserException;
 use App\Form\Data\UploadData;
+use App\Import\Exception\ProcessorException;
 use App\Validation\RemindoImportValidator;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\ErrorHandler\Exception\FlattenException;
@@ -65,7 +65,7 @@ final class RemindoImporter
      *
      * @return \App\Entity\Remindo
      *
-     * @throws \App\Exception\ProcessorException
+     * @throws \App\Import\Exception\ProcessorException
      */
     public function import(UploadData $data): Remindo
     {
@@ -89,6 +89,8 @@ final class RemindoImporter
         }
 
         if (false === $this->validator->validate($parsed)) {
+            $this->logger->error('data does not validate');
+
             throw new ProcessorException('data does not validate');
         }
 
@@ -99,6 +101,11 @@ final class RemindoImporter
                 ->process()
             ;
         } catch (DoctrineTransactionException $e) {
+            $this->logger->error('unable to persist data for {remindo}', [
+                'remindo' => $data->getName(),
+                'exception' => FlattenException::createFromThrowable($e),
+            ]);
+
             throw new ProcessorException('flushing error', $e);
         }
     }

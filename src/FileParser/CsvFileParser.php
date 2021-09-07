@@ -11,7 +11,7 @@ namespace App\FileParser;
 
 use App\Contract\FileParser\FileParserInterface;
 use App\Contract\FileParser\Provider\DataProviderInterface;
-use App\Exception\FileParser\FileParserException;
+use App\FileParser\Exception\FileParserException;
 use App\FileParser\Provider\CsvDataProvider;
 use App\Validation\FileValidator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

@@ -12,7 +12,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\Common\Collections\Selectable;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -80,6 +79,10 @@ class Remindo
     }
 
     /**
+     * @infection-ignore-all
+     *
+     * @codeCoverageIgnore
+     *
      * @return UuidInterface
      */
     public function getId(): UuidInterface
@@ -88,6 +91,10 @@ class Remindo
     }
 
     /**
+     * @infection-ignore-all
+     *
+     * @codeCoverageIgnore
+     *
      * @return \DateTime
      */
     public function getCreated(): \DateTime
@@ -138,10 +145,6 @@ class Remindo
      */
     public function getQuestionBySequence(int $sequence): ?Question
     {
-        if (!$this->questions instanceof Selectable) {
-            return null;
-        }
-
         $criteria = Criteria::create()
             ->andWhere(Criteria::expr()->eq('sequence', $sequence))
         ;
@@ -156,10 +159,6 @@ class Remindo
      */
     public function getRespondentByName(string $name): ?Respondent
     {
-        if (!$this->respondents instanceof Selectable) {
-            return null;
-        }
-
         $criteria = Criteria::create()
             ->andWhere(Criteria::expr()->eq('name', $name))
         ;

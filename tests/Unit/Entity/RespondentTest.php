@@ -34,6 +34,9 @@ class RespondentTest extends TestCase
 
         self::assertSame($name, $respondent->getName());
         self::assertSame($remindo, $respondent->getRemindo());
+
+        self::assertCount(0, $respondent->getResults());
+        self::assertSame(1.0, $respondent->getCeasura());
     }
 
     /**

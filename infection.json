@@ -3,7 +3,16 @@
     "source": {
         "directories": [
             "src"
+        ],
+        "excludes": [
+            "Controller",
+            "Repository",
+            "Form/Type",
+            "Kernel.php"
         ]
+    },
+    "logs": {
+        "text": "infection.log"
     },
     "mutators": {
         "@default": true

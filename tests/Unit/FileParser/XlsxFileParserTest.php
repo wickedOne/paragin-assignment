@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\FileParser;
 
-use App\Exception\FileParser\FileParserException;
+use App\FileParser\Exception\FileParserException;
 use App\FileParser\Provider\XlsxDataProvider;
 use App\FileParser\XlsxFileParser;
 use App\Validation\FileValidator;
@@ -44,7 +44,7 @@ class XlsxFileParserTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParserException
+     * @throws \App\FileParser\Exception\FileParserException
      */
     public function testInvalidFileException(): void
     {
@@ -59,7 +59,7 @@ class XlsxFileParserTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParserException
+     * @throws \App\FileParser\Exception\FileParserException
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
     public function testInvalidFileExceptionMessage(): void
@@ -71,18 +71,18 @@ class XlsxFileParserTest extends TestCase
 
         try {
             $parser->parse();
-        } catch (FileParserException $e) {
+        } catch (\App\FileParser\Exception\FileParserException $e) {
         }
 
         self::assertStringStartsWith('invalid file', $e->getMessage());
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParserException
+     * @throws \App\FileParser\Exception\FileParserException
      */
     public function testSimpleXlsxException(): void
     {
-        $this->expectException(FileParserException::class);
+        $this->expectException(\App\FileParser\Exception\FileParserException::class);
 
         $file = $this->getUploadedFile();
         $validator = $this->mockValidator($file, true);
@@ -99,7 +99,7 @@ class XlsxFileParserTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParserException
+     * @throws \App\FileParser\Exception\FileParserException
      */
     public function testSimpleXlsxExceptionMessage(): void
     {
@@ -116,7 +116,7 @@ class XlsxFileParserTest extends TestCase
 
         try {
             $parser->parse();
-        } catch (FileParserException $e) {
+        } catch (\App\FileParser\Exception\FileParserException $e) {
         }
 
         self::assertStringStartsWith('unable to parse', $e->getMessage());

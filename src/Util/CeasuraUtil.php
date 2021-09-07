@@ -35,6 +35,10 @@ final class CeasuraUtil
      */
     public static function calculate(float $score, int $max): float
     {
+        if (0 === $max) {
+            return self::LOWER_GRADE;
+        }
+
         $percentage = ($score / $max) * 100;
 
         if (self::LOWER_BOUND >= $percentage) {

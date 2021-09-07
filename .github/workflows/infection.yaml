@@ -4,6 +4,10 @@ on:
   pull_request:
   push:
 
+env:
+  MIN_MSI: 68.00
+  MIN_COVERED_MSI: 80.00
+
 jobs:
   mutation-tests:
     name: "mutation tests"
@@ -53,4 +57,4 @@ jobs:
         run: "composer install --no-interaction --no-progress --no-suggest"
 
       - name: "infection"
-        run: "./vendor/bin/infection --test-framework-options='--testsuite=unit'"
+        run: "./vendor/bin/infection --logger-github --min-msi=$MIN_MSI --min-covered-msi=$MIN_COVERED_MSI --test-framework-options='--testsuite=unit'"

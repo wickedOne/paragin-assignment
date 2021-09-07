@@ -11,7 +11,6 @@ namespace App\FileParser;
 
 use App\Contract\FileParser\FileParserFactoryInterface;
 use App\Contract\FileParser\FileParserInterface;
-use App\Exception\FileParser\FileParserException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -35,7 +34,7 @@ final class FileParserFactory implements FileParserFactoryInterface
             case self::EXTENSION_CSV:
                 return new CsvFileParser($file);
             default:
-                throw new FileParserException(sprintf('no parser found for extension %s', $file->guessClientExtension()));
+                throw new Exception\FileParserException(sprintf('no parser found for extension %s', $file->guessClientExtension()));
         }
     }
 }
