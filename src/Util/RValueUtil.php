@@ -43,7 +43,7 @@ final class RValueUtil
         $diff2 = ($size * array_sum($y2)) - (array_sum($grades) ** 2);
 
         if (0.0 === $sqrt = sqrt($diff1 * $diff2)) {
-            return round($sub, self::PRECISION);
+            return 0.0;
         }
 
         return round($sub / $sqrt, self::PRECISION);

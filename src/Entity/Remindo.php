@@ -134,19 +134,37 @@ class Remindo
     /**
      * @param int $sequence
      *
-     * @return false|\App\Entity\Question
+     * @return \App\Entity\Question|null
      */
-    public function getQuestionBySequence(int $sequence)
+    public function getQuestionBySequence(int $sequence): ?Question
     {
         if (!$this->questions instanceof Selectable) {
-            return false;
+            return null;
         }
 
         $criteria = Criteria::create()
             ->andWhere(Criteria::expr()->eq('sequence', $sequence))
         ;
 
-        return $this->questions->matching($criteria)->first();
+        return $this->questions->matching($criteria)->first() ?: null;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return \App\Entity\Respondent|null
+     */
+    public function getRespondentByName(string $name): ?Respondent
+    {
+        if (!$this->respondents instanceof Selectable) {
+            return null;
+        }
+
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->eq('name', $name))
+        ;
+
+        return $this->respondents->matching($criteria)->first() ?: null;
     }
 
     /**

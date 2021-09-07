@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\FileParser;
 
-use App\Exception\FileParser\FileParseException;
+use App\Exception\FileParser\FileParserException;
 use App\FileParser\CsvFileParser;
 use App\FileParser\FileParserFactory;
 use App\FileParser\XlsxFileParser;
@@ -40,11 +40,11 @@ class FileParserFactoryTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function testUnknownMimeType(): void
     {
-        $this->expectException(FileParseException::class);
+        $this->expectException(FileParserException::class);
 
         $factory = new FileParserFactory();
         $file = new UploadedFile(__FILE__, 'foo', 'video/mp4');

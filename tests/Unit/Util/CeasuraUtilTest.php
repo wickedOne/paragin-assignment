@@ -42,7 +42,17 @@ class CeasuraUtilTest extends TestCase
             'result' => 1.0,
         ];
 
+        yield 'lower_bound_exact' => [
+            'score' => 20,
+            'result' => 1.0,
+        ];
+
         yield 'middle_bound' => [
+            'score' => 68,
+            'result' => 5.4,
+        ];
+
+        yield 'middle_bound_exact' => [
             'score' => 70,
             'result' => 5.5,
         ];

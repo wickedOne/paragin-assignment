@@ -11,7 +11,7 @@ namespace App\FileParser;
 
 use App\Contract\FileParser\FileParserInterface;
 use App\Contract\FileParser\Provider\DataProviderInterface;
-use App\Exception\FileParser\FileParseException;
+use App\Exception\FileParser\FileParserException;
 use App\FileParser\Provider\XlsxDataProvider;
 use App\Validation\FileValidator;
 use SimpleXLSX;
@@ -50,7 +50,7 @@ final class XlsxFileParser implements FileParserInterface
      * @param \App\Contract\FileParser\Provider\DataProviderInterface|null $provider
      * @param \SimpleXLSX|null                                             $simpleXLSX
      *
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function __construct(UploadedFile $file, FileValidator $validator = null, DataProviderInterface $provider = null, SimpleXLSX $simpleXLSX = null)
     {
@@ -66,11 +66,11 @@ final class XlsxFileParser implements FileParserInterface
     public function parse(): array
     {
         if (false === $this->validate()) {
-            throw new FileParseException(sprintf('invalid file %s', $this->file->getFilename()));
+            throw new FileParserException(sprintf('invalid file %s', $this->file->getFilename()));
         }
 
         if (false === $rows = $this->simpleXlsx->rows()) {
-            throw new FileParseException(sprintf('unable to parse %s', $this->file->getFilename()));
+            throw new FileParserException(sprintf('unable to parse %s', $this->file->getFilename()));
         }
 
         return $rows;

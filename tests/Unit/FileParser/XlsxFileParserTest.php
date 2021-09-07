@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\FileParser;
 
-use App\Exception\FileParser\FileParseException;
+use App\Exception\FileParser\FileParserException;
 use App\FileParser\Provider\XlsxDataProvider;
 use App\FileParser\XlsxFileParser;
 use App\Validation\FileValidator;
@@ -44,11 +44,11 @@ class XlsxFileParserTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function testInvalidFileException(): void
     {
-        $this->expectException(FileParseException::class);
+        $this->expectException(FileParserException::class);
 
         $file = $this->getUploadedFile();
         $validator = $this->mockValidator($file, false);
@@ -59,11 +59,30 @@ class XlsxFileParserTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testInvalidFileExceptionMessage(): void
+    {
+        $file = $this->getUploadedFile();
+        $validator = $this->mockValidator($file, false);
+
+        $parser = new XlsxFileParser($file, $validator);
+
+        try {
+            $parser->parse();
+        } catch (FileParserException $e) {
+        }
+
+        self::assertStringStartsWith('invalid file', $e->getMessage());
+    }
+
+    /**
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function testSimpleXlsxException(): void
     {
-        $this->expectException(FileParseException::class);
+        $this->expectException(FileParserException::class);
 
         $file = $this->getUploadedFile();
         $validator = $this->mockValidator($file, true);
@@ -77,6 +96,30 @@ class XlsxFileParserTest extends TestCase
         $parser = new XlsxFileParser($file, $validator, null, $simpleXlsx);
 
         $parser->parse();
+    }
+
+    /**
+     * @throws \App\Exception\FileParser\FileParserException
+     */
+    public function testSimpleXlsxExceptionMessage(): void
+    {
+        $file = $this->getUploadedFile();
+        $validator = $this->mockValidator($file, true);
+        $simpleXlsx = $this->getMockBuilder(\SimpleXLSX::class)->onlyMethods(['rows'])->getMock();
+        $simpleXlsx
+            ->expects($this->once())
+            ->method('rows')
+            ->willReturn(false)
+        ;
+
+        $parser = new XlsxFileParser($file, $validator, null, $simpleXlsx);
+
+        try {
+            $parser->parse();
+        } catch (FileParserException $e) {
+        }
+
+        self::assertStringStartsWith('unable to parse', $e->getMessage());
     }
 
     /**

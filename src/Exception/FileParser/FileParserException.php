@@ -12,11 +12,11 @@ namespace App\Exception\FileParser;
 use Throwable;
 
 /**
- * File Parse Exception.
+ * File Parser Exception.
  *
  * @author wicliff <wwolda@gmail.com>
  */
-class FileParseException extends \RuntimeException
+class FileParserException extends \RuntimeException
 {
     /**
      * @param string          $message

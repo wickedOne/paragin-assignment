@@ -24,14 +24,14 @@ interface FileParserInterface
     /**
      * @return array<int, array>
      *
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function parse(): array;
 
     /**
      * @return string|null
      *
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function getData(): ?string;
 }

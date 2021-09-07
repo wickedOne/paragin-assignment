@@ -55,6 +55,14 @@ class RemindoImportValidatorTest extends TestCase
             'result' => false,
         ];
 
+        yield 'partially_incorrect_headers' => [
+            'data' => [
+                ['foo'],
+                [RemindoImportValidator::IDENTIFIER_MAX_SCORES],
+            ],
+            'result' => false,
+        ];
+
         yield 'correct_number_of_questions' => [
             'data' => [
                 [RemindoImportValidator::IDENTIFIER_QUESTIONS, 1, 2, 3],

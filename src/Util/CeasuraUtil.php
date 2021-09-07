@@ -16,13 +16,13 @@ namespace App\Util;
  */
 final class CeasuraUtil
 {
-    private const LOWER_BOUND = 20;
+    private const LOWER_BOUND = 20.0;
     private const LOWER_GRADE = 1;
 
-    private const MIDDLE_BOUND = 70;
+    private const MIDDLE_BOUND = 70.0;
     private const MIDDLE_GRADE = 5.5;
 
-    private const UPPER_BOUND = 100;
+    private const UPPER_BOUND = 100.0;
     private const UPPER_GRADE = 10;
 
     private const PRECISION = 1;
@@ -41,8 +41,12 @@ final class CeasuraUtil
             return self::LOWER_GRADE;
         }
 
-        if (self::UPPER_BOUND === (int) $percentage) {
+        if (self::UPPER_BOUND === $percentage) {
             return self::UPPER_GRADE;
+        }
+
+        if (self::MIDDLE_BOUND === $percentage) {
+            return self::MIDDLE_GRADE;
         }
 
         if (self::MIDDLE_BOUND > $percentage) {

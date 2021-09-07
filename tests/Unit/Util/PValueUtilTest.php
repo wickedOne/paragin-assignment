@@ -50,6 +50,12 @@ class PValueUtilTest extends TestCase
             'result' => 0,
         ];
 
+        yield 'test_incorrect_max' => [
+            'average' => 1.3,
+            'maximum' => 0,
+            'result' => 0.0,
+        ];
+
         yield 'test_precision' => [
             'average' => 1.0,
             'maximum' => 3,

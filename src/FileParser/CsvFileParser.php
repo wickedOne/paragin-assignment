@@ -11,7 +11,7 @@ namespace App\FileParser;
 
 use App\Contract\FileParser\FileParserInterface;
 use App\Contract\FileParser\Provider\DataProviderInterface;
-use App\Exception\FileParser\FileParseException;
+use App\Exception\FileParser\FileParserException;
 use App\FileParser\Provider\CsvDataProvider;
 use App\Validation\FileValidator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -67,13 +67,13 @@ class CsvFileParser implements FileParserInterface
     public function parse(): array
     {
         if (false === $this->validate() || null === $csv = $this->getData()) {
-            throw new FileParseException(sprintf('invalid file %s', $this->file->getFilename()));
+            throw new FileParserException(sprintf('invalid file %s', $this->file->getFilename()));
         }
 
         try {
             return $this->serializer->decode($csv, 'csv', [CsvEncoder::NO_HEADERS_KEY => true]);
         } catch (UnexpectedValueException $e) {
-            throw new FileParseException(sprintf('unable to decode file %s', $this->file->getFilename()), $e);
+            throw new FileParserException(sprintf('unable to decode file %s', $this->file->getFilename()), $e);
         }
     }
 

@@ -13,7 +13,7 @@ use App\Entity\Remindo;
 use App\Exception\ProcessorException;
 use App\Form\Data\UploadData;
 use App\Form\Type\UploadType;
-use App\Processor\RemindoImportProcessor;
+use App\Import\RemindoImporter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,14 +57,14 @@ final class RemindoController extends AbstractController
     /**
      * @param \Symfony\Component\HttpFoundation\Request          $request
      * @param \Symfony\Contracts\Translation\TranslatorInterface $translator
-     * @param \App\Processor\RemindoImportProcessor              $processor
+     * @param \App\Import\RemindoImporter                        $processor
      * @param \Doctrine\ORM\EntityManagerInterface               $em
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route(path="/remindo/new", name="app_remindo_new")
      */
-    public function new(Request $request, TranslatorInterface $translator, RemindoImportProcessor $processor, EntityManagerInterface $em): Response
+    public function new(Request $request, TranslatorInterface $translator, RemindoImporter $processor, EntityManagerInterface $em): Response
     {
         $upload = new UploadData();
         $form = $this->createForm(UploadType::class, $upload, [
@@ -76,7 +76,7 @@ final class RemindoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /* @var UploadData $data */
             try {
-                $test = $processor->process($upload);
+                $test = $processor->import($upload);
 
                 $em->persist($test);
                 $em->flush();

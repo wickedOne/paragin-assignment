@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\FileParser;
 
-use App\Exception\FileParser\FileParseException;
+use App\Exception\FileParser\FileParserException;
 use App\FileParser\CsvFileParser;
 use App\FileParser\Provider\CsvDataProvider;
 use App\Validation\FileValidator;
@@ -47,11 +47,11 @@ class CsvFileParserTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function testInvalidFileException(): void
     {
-        $this->expectException(FileParseException::class);
+        $this->expectException(FileParserException::class);
 
         $file = $this->getUploadedFile();
         $validator = $this->mockValidator($file, false);
@@ -62,11 +62,11 @@ class CsvFileParserTest extends TestCase
     }
 
     /**
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function testDecodeException(): void
     {
-        $this->expectException(FileParseException::class);
+        $this->expectException(FileParserException::class);
 
         $file = $this->getUploadedFile();
         $validator = $this->mockValidator($file, true);

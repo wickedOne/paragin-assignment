@@ -23,7 +23,7 @@ interface FileParserFactoryInterface
      *
      * @return \App\Contract\FileParser\FileParserInterface
      *
-     * @throws \App\Exception\FileParser\FileParseException
+     * @throws \App\Exception\FileParser\FileParserException
      */
     public function create(UploadedFile $file): FileParserInterface;
 }

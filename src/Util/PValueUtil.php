@@ -27,7 +27,7 @@ final class PValueUtil
     public static function calculate(float $avg, int $max): float
     {
         if (0 === $max) {
-            return round($avg, self::PRECISION);
+            return 0.0;
         }
 
         return round($avg / $max, self::PRECISION);
