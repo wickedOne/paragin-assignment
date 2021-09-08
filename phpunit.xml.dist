@@ -34,6 +34,9 @@
             <directory suffix=".php">src</directory>
             <directory suffix=".php">PHPStan</directory>
         </include>
+        <exclude>
+            <file>src/Kernel.php</file>
+        </exclude>
     </coverage>
 
     <listeners>

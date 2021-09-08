@@ -59,7 +59,7 @@ final class TurboFrameRedirectSubscriber implements EventSubscriberInterface
             return false;
         }
 
-        if (!$request->headers->get('Turbo-Frame')) {
+        if (null === $request->headers->get('Turbo-Frame')) {
             return false;
         }
 

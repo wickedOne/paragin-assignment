@@ -32,6 +32,6 @@ class XlsxDataProvider implements DataProviderInterface
             return null;
         }
 
-        return fread($upload, $file->getSize()) ?: null;
+        return false !== ($string = fread($upload, $file->getSize())) ? $string : null;
     }
 }

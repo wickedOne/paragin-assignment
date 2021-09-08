@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
@@ -36,7 +37,7 @@ class Remindo
      *
      * @ORM\Column(type="datetime")
      */
-    private \DateTime $created;
+    private DateTime $created;
 
     /**
      * @ORM\Column(type="string")
@@ -72,7 +73,7 @@ class Remindo
     public function __construct()
     {
         $this->id = Uuid::uuid4();
-        $this->created = new \DateTime();
+        $this->created = new DateTime();
         $this->respondents = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->results = new ArrayCollection();
@@ -97,7 +98,7 @@ class Remindo
      *
      * @return \DateTime
      */
-    public function getCreated(): \DateTime
+    public function getCreated(): DateTime
     {
         return $this->created;
     }
@@ -149,7 +150,7 @@ class Remindo
             ->andWhere(Criteria::expr()->eq('sequence', $sequence))
         ;
 
-        return $this->questions->matching($criteria)->first() ?: null;
+        return false !== ($question = $this->questions->matching($criteria)->first()) ? $question : null;
     }
 
     /**
@@ -163,7 +164,7 @@ class Remindo
             ->andWhere(Criteria::expr()->eq('name', $name))
         ;
 
-        return $this->respondents->matching($criteria)->first() ?: null;
+        return false !== ($respondent = $this->respondents->matching($criteria)->first()) ? $respondent : null;
     }
 
     /**

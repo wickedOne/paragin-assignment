@@ -56,9 +56,9 @@ class CsvFileParser implements FileParserInterface
     public function __construct(UploadedFile $file, FileValidator $validator = null, Serializer $serializer = null, DataProviderInterface $provider = null)
     {
         $this->file = $file;
-        $this->validator = $validator ?: new FileValidator();
-        $this->serializer = $serializer ?: new Serializer([new ObjectNormalizer()], [new CsvEncoder()]);
-        $this->provider = $provider ?: new CsvDataProvider();
+        $this->validator = $validator ?? new FileValidator();
+        $this->serializer = $serializer ?? new Serializer([new ObjectNormalizer()], [new CsvEncoder()]);
+        $this->provider = $provider ?? new CsvDataProvider();
     }
 
     /**

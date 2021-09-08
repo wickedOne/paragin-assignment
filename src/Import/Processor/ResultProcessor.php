@@ -98,9 +98,9 @@ class ResultProcessor implements ProcessorInterface
     }
 
     /**
-     * @param array<int, float> $results
+     * @param array<int, int|string> $results
      *
-     * @return \Generator<int, float>
+     * @return \Generator<int, int|string>
      */
     private function resultGenerator(array $results): \Generator
     {

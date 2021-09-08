@@ -34,7 +34,7 @@ final class FileParserFactory implements FileParserFactoryInterface
             case self::EXTENSION_CSV:
                 return new CsvFileParser($file);
             default:
-                throw new Exception\FileParserException(sprintf('no parser found for extension %s', $file->guessClientExtension() ?: '[unknown extension]'));
+                throw new Exception\FileParserException(sprintf('no parser found for extension %s', $file->guessClientExtension() ?? '[unknown extension]'));
         }
     }
 }

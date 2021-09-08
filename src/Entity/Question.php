@@ -11,6 +11,7 @@ namespace App\Entity;
 
 use App\Util\PValueUtil;
 use App\Util\RValueUtil;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -37,7 +38,7 @@ class Question
      *
      * @ORM\Column(type="datetime")
      */
-    private \DateTime $created;
+    private DateTime $created;
 
     /**
      * @ORM\Column(type="integer")
@@ -70,7 +71,7 @@ class Question
     public function __construct()
     {
         $this->id = Uuid::uuid4();
-        $this->created = new \DateTime();
+        $this->created = new DateTime();
         $this->results = new ArrayCollection();
     }
 
@@ -93,7 +94,7 @@ class Question
      *
      * @return \DateTime
      */
-    public function getCreated(): \DateTime
+    public function getCreated(): DateTime
     {
         return $this->created;
     }
@@ -139,13 +140,13 @@ class Question
             return 0.0;
         }
 
-        $sum = array_reduce($this->results->toArray(), static function ($carry, Result $result) {
+        $sum = array_reduce($this->results->toArray(), static function ($carry, Result $result): float {
             $carry += $result->getScore();
 
             return $carry;
         });
 
-        return PValueUtil::calculate(($sum / $this->results->count()), $this->max);
+        return PValueUtil::calculate(($sum ?? 0 / $this->results->count()), $this->max);
     }
 
     /**
@@ -157,11 +158,11 @@ class Question
             return 0.0;
         }
 
-        $scores = array_map(static function (Result $result) {
+        $scores = array_map(static function (Result $result): float {
             return $result->getScore();
         }, $this->results->toArray());
 
-        $grades = array_map(static function (Result $result) {
+        $grades = array_map(static function (Result $result): float {
             return $result->getRespondent()->getCeasura();
         }, $this->results->toArray());
 

@@ -61,7 +61,7 @@ class QuestionTest extends TestCase
 
         Util::setPrivateProperty($question, 'results', new ArrayCollection([$resultOne, $resultTwo]));
 
-        self::assertSame(0.8, $question->getPValue());
+        self::assertSame(1.5, $question->getPValue());
     }
 
     /**

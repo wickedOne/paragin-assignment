@@ -24,6 +24,6 @@ class CsvDataProvider implements DataProviderInterface
      */
     public function provide(UploadedFile $file): ?string
     {
-        return file_get_contents($file->getPathname()) ?: null;
+        return false !== ($string = file_get_contents($file->getPathname())) ? $string : null;
     }
 }

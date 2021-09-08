@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -33,7 +34,7 @@ class Result
      *
      * @ORM\Column(type="datetime")
      */
-    private \DateTime $created;
+    private DateTime $created;
 
     /**
      * @ORM\Column(type="float")
@@ -70,7 +71,7 @@ class Result
     public function __construct()
     {
         $this->id = Uuid::uuid4();
-        $this->created = new \DateTime();
+        $this->created = new DateTime();
     }
 
     /**
@@ -92,7 +93,7 @@ class Result
      *
      * @return \DateTime
      */
-    public function getCreated(): \DateTime
+    public function getCreated(): DateTime
     {
         return $this->created;
     }

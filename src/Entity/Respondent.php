@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Util\CeasuraUtil;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,7 +37,7 @@ class Respondent
      *
      * @ORM\Column(type="datetime")
      */
-    private \DateTime $created;
+    private DateTime $created;
 
     /**
      * @ORM\Column(type="string")
@@ -64,7 +65,7 @@ class Respondent
     public function __construct()
     {
         $this->id = Uuid::uuid4();
-        $this->created = new \DateTime();
+        $this->created = new DateTime();
         $this->results = new ArrayCollection();
     }
 
@@ -87,7 +88,7 @@ class Respondent
      *
      * @return \DateTime
      */
-    public function getCreated(): \DateTime
+    public function getCreated(): DateTime
     {
         return $this->created;
     }
@@ -145,7 +146,7 @@ class Respondent
      */
     private function getSumScore(): float
     {
-        return (float) array_reduce($this->results->toArray(), static function ($carry, Result $result) {
+        return (float) array_reduce($this->results->toArray(), static function ($carry, Result $result): float {
             return $carry + $result->getScore();
         });
     }
@@ -155,7 +156,7 @@ class Respondent
      */
     private function getSumMax(): int
     {
-        return (int) array_reduce($this->results->toArray(), static function ($carry, Result $result) {
+        return (int) array_reduce($this->results->toArray(), static function ($carry, Result $result): float {
             return $carry + $result->getQuestion()->getMax();
         });
     }

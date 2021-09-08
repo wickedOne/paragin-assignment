@@ -20,7 +20,7 @@ use Doctrine\ORM\Decorator\EntityManagerDecorator;
 final class TransactionalEntityManagerDecorator extends EntityManagerDecorator
 {
     /**
-     * @param null $entity
+     * @param mixed $entity
      */
     public function flush($entity = null): void
     {

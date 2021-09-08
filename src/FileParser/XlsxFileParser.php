@@ -55,9 +55,9 @@ final class XlsxFileParser implements FileParserInterface
     public function __construct(UploadedFile $file, FileValidator $validator = null, DataProviderInterface $provider = null, SimpleXLSX $simpleXLSX = null)
     {
         $this->file = $file;
-        $this->validator = $validator ?: new FileValidator();
-        $this->provider = $provider ?: new XlsxDataProvider();
-        $this->simpleXlsx = $simpleXLSX ?: new SimpleXLSX($this->getData(), true);
+        $this->validator = $validator ?? new FileValidator();
+        $this->provider = $provider ?? new XlsxDataProvider();
+        $this->simpleXlsx = $simpleXLSX ?? new SimpleXLSX($this->getData(), true);
     }
 
     /**

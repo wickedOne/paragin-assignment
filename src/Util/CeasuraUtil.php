@@ -53,7 +53,7 @@ final class CeasuraUtil
             return self::MIDDLE_GRADE;
         }
 
-        if (self::MIDDLE_BOUND > $percentage) {
+        if (self::MIDDLE_BOUND >= $percentage) {
             return round(self::LOWER_GRADE + ($percentage * (self::MIDDLE_GRADE - self::LOWER_GRADE) / self::MIDDLE_BOUND), self::PRECISION);
         }
 

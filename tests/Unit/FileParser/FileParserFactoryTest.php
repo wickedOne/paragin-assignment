@@ -53,6 +53,21 @@ class FileParserFactoryTest extends TestCase
     }
 
     /**
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
+    public function testExceptionMimeType(): void
+    {
+        $factory = new FileParserFactory();
+        $file = new UploadedFile(__FILE__, 'foo', 'video/mp4');
+
+        try {
+            $factory->create($file);
+        } catch (FileParserException $e) {
+            self::assertStringContainsString('mp4', $e->getMessage());
+        }
+    }
+
+    /**
      * @return \Generator
      */
     public function fileParserDataProvider(): \Generator
